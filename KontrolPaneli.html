@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontrol Paneli</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/KontrolPaneli.css">
+    <script src="js/jsros.js"></script>
+    <script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+</head>
+<body>
+    <!-- Top Menu Bar -->
+    <header>
+
+        <nav>
+            <!-- Logo -->
+            <img src="logo.png" alt="PLAT_X Logo" id="logo">
+        </nav>
+
+        <!-- Menu/Options -->
+        <nav>
+            <ul>
+                <li><button onclick="window.location.href = 'KontrolPaneli.html';">Kontrol Paneli</button></li>
+                <li><button onclick="window.location.href = 'GorevPaneli.html';">Gorev Paneli</button></li>
+                <li><button onclick="window.location.href = 'DurumPaneli.html';">Durum Paneli</button></li>
+                <li><button onclick="window.location.href = 'Servisler ve Aksiyonlar.html';">Servisler ve Aksiyonlar</button></li>
+                <li><button onclick="window.location.href = 'Harita.html';">Harita</button></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- JOYSTICK -->
+    <div class="controller">
+        <div></div>
+        <button id="forward">↑</button>
+        <div></div>
+        <button id="left">←</button>
+        <button id="stop">Stop</button>
+        <button id="right">→</button>
+        <div></div>
+        <button id="backward">↓</button>
+        <div></div>
+    </div>
+
+    <div id="speedIndicator">Speed: 0</div> <!-- HIZ -->
+    <div id="directionIndicator">Direction: Stopped</div> <!-- YON -->
+
+    <script>
+        // ROS connection
+        var ros = new ROSLIB.Ros({
+            url: 'ws://localhost:9090'
+        });
+
+        var cmdVel = new ROSLIB.Topic({
+            ros: ros,
+            name: '/cmd_vel', // Topic name to publish velocity commands
+            messageType: 'geometry_msgs/Twist' // Message type
+        });
+        // Initial message for velocity
+        var twist = new ROSLIB.Message({
+            linear: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            angular: {
+                x: 0,
+                y: 0,
+                z: 0
+            }
+        });
+        // Function to set robot's velocity and update indicators
+        function setVelocity(x, z) {
+            twist.linear.x = x; // Linear speed
+            twist.angular.z = z; // Angular speed
+            cmdVel.publish(twist);
+            // Update the speed and direction indicator
+            document.getElementById('speedIndicator').textContent = `Speed: ${x}`;
+            document.getElementById('directionIndicator').textContent = `Direction: ${z > 0 ? 'Left' : z < 0 ? 'Right' : 'Straight'}`;
+        }
+        // Event listener
+        document.getElementById('forward').addEventListener('click', function() { setVelocity(0.5, 0); });
+        document.getElementById('backward').addEventListener('click', function() { setVelocity(-0.5, 0); });
+        document.getElementById('left').addEventListener('click', function() { setVelocity(0.5, 1); });
+        document.getElementById('right').addEventListener('click', function() { setVelocity(0.5, -1); });
+        document.getElementById('stop').addEventListener('click', function() { setVelocity(0, 0); });
+    </script>
+
+</body>
+</html>

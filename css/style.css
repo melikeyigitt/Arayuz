@@ -1,0 +1,64 @@
+/* We reset the styling of the page first */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #fff;
+    color: #6a6a6a;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #6a6a6a;
+}
+
+#logo {
+    max-height: 3.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 1.25rem;
+}
+
+button {
+    background-color: #414141; /* Button colour */
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.625rem 1.25rem;
+    cursor: pointer;
+    color: #fff; /* White text color */
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #2C8FFFFF; /* Change in button colour on hover */ /* 2C8FFFFF or 6a6a6a*/
+}
+
+ #status {
+     padding: 10px;
+     color: black;
+ }
+.connecting {
+    background-color: yellow;
+    color: black;
+}
+.connected {
+    background-color: green;
+}
+.closed {
+    background-color: red;
+}
+.error {
+    background-color: orange;
+}

@@ -1,0 +1,58 @@
+/* General Styles for the Mission Panel */
+#mission-panel {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 0.2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#mission-panel h2 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Styles for the QR Code Section */
+#qr_code {
+    padding: 0.625rem;
+    background-color: #fff;
+    border: 0.0625rem solid #ddd;
+    border-radius: 0.2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styles for the Input Fields and Labels */
+#mission-panel label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+#mission-panel input[type="text"],
+#mission-panel input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Makes sure padding doesn't affect the total width */
+}
+
+/* Styles for the Button */
+.button {
+    display: inline-block;
+    background-color: #2C8FFFFF;
+    color: #ffffff;
+    padding: 10px 15px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}

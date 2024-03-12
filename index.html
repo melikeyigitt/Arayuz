@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/roslib.js"></script>
+  <script src="js/roslib.js"></script>
+  <script src="js/jsros.js"></script>
+  <title>Robot Kontrol Paneli</title>
+  <script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+  <link rel="icon" href="logo.png">
+</head>
+
+<body>
+
+  <header>
+
+    <nav>
+      <!-- Logo -->
+      <img src="logo.png" alt="PLAT_X Logo" id="logo">
+    </nav>
+
+    <!-- Menu/Options -->
+    <nav>
+      <ul>
+        <li><button onclick="window.location.href = 'KontrolPaneli.html';">Kontrol Paneli</button></li>
+        <li><button onclick="window.location.href = 'GorevPaneli.html';">Gorev Paneli</button></li>
+        <li><button onclick="window.location.href = 'DurumPaneli.html';">Durum Paneli</button></li>
+        <li><button onclick="window.location.href = 'Servisler ve Aksiyonlar.html';">Servisler ve Aksiyonlar</button></li>
+        <li><button onclick="window.location.href = 'Harita.html';">Harita</button></li>
+      </ul>
+    </nav>
+    </header>
+
+
+
+  <!-- ROS baglantisi icin JavaScript kodu; ROS ile baglanti kuruldugunda renk degistiriyor -->
+  <!-- JavaScript that creates a new ROSLIB.Ros object to connect to the ROS bridge server -->
+  <!-- You must replace 'ws://localhost:9090' with the actual WebSocket URL of your ROS bridge server.
+  Ensure the rosbridge_server and rosbridge_websocket nodes are running in your ROS environment for this to work. -->
+
+  <div id="status" class="connecting">Connecting...</div>
+
+  <!-- public_ip -->
+  <script>
+
+    var ros = new ROSLIB.Ros({
+      url : 'ws://localhost:9090' // Update this URL to your rosbridge WebSocket server
+    });
+
+    ros.on('connection', function() {
+      console.log('Connected to websocket server.');
+      document.getElementById('status').className = 'connected';
+      document.getElementById('status').innerHTML = 'Connected';
+    });
+
+    ros.on('error', function(error) {
+      console.log('Error connecting to websocket server: ', error);
+      document.getElementById('status').className = 'error';
+      document.getElementById('status').innerHTML = 'Error';
+    });
+
+    ros.on('close', function() {
+      console.log('Connection to websocket server closed.');
+      document.getElementById('status').className = 'closed';
+      document.getElementById('status').innerHTML = 'Closed';
+    });
+  </script>
+</body>
+
+</html>
