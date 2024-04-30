@@ -15,8 +15,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
     background-color: #6a6a6a;
+    gap: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #logo {
@@ -44,6 +46,12 @@ button {
 button:hover {
     background-color: #2C8FFFFF; /* Change in button colour on hover */ /* 2C8FFFFF or 6a6a6a*/
 }
+#stop{
+    transition: background-color 0s ease;
+}
+#stop:hover{
+    background-color: red;
+}
 
  #status {
      padding: 10px;
@@ -61,4 +69,114 @@ button:hover {
 }
 .error {
     background-color: orange;
+}
+main {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Adjust the fr units based on how much space you want each section to take */
+}
+#sideA{
+    display: flex;
+    flex-direction: column; /* Aligns children vertically */
+    justify-content: flex-start; /* Aligns children to the top */
+    height: 100%; /* Makes side A take full height of the viewport */
+    padding: 10px;
+    background-color: #e7e5e5;
+    width: fit-content;
+}
+ol {
+    list-style-type: none; /* This removes the numbers */
+    padding: 0;            /* Removes padding, especially on the left */
+    margin: 0;             /* Removes default margin */
+}
+
+li {
+    margin-bottom: 10px; /* Adjust this value to increase or decrease the gap */
+}
+
+#status{
+    height: fit-content;
+}
+#logs{
+    display: flex;
+    flex-direction: column; /* Aligns children vertically */
+    justify-content: flex-start; /* Aligns children to the top */
+    height: 100vh; /* Makes side A take full height of the viewport */
+    padding: 10px;
+    background-color: #e7e5e5;
+    min-width: 7.5rem;
+
+}
+#btnHarita, #btnGorevPaneli, #btnKontrolPaneli, #btnDurumPaneli, #btnServislerAksiyonlar{
+    width:5rem; /* Example minimum width, adjust as needed */
+    box-sizing: border-box;
+}
+
+.controller {
+    display: grid;
+    grid-template-columns: repeat(3, 6.25rem);
+    grid-template-rows: repeat(3, 6.25rem);
+    gap: 1rem; /* adjust the gap size as needed */
+    justify-content: center;
+    align-items: center;
+}
+
+.controller button {
+    justify-self: center;
+    align-self: center;
+}
+.controller button {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+}
+#speedIndicator, #directionIndicator {
+    font-size: 20px;
+    margin: 10px;
+}
+
+#mission-panel {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 0.2rem;
+}
+
+#mission-panel h2 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Styles for the QR Code Section */
+#qr_code {
+    padding: 0.625rem;
+    background-color: #fff;
+    border: 0.0625rem solid #ddd;
+    border-radius: 0.2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styles for the Input Fields and Labels */
+#mission-panel label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+#mission-panel input[type="text"],
+#mission-panel input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Makes sure padding doesn't affect the total width */
+}
+.gauge-container {
+    margin: 20px;
+}
+.gauge {
+    width: 100%;
+    height: auto;
 }

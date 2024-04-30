@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "justgage": "^1.6.1",
+    "roslib": "^1.4.1"
+  }
+}
