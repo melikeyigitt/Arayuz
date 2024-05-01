@@ -1,4 +1,5 @@
 /* We reset the styling of the page first */
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,900,300);
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +10,27 @@
 body {
     background-color: #fff;
     color: #6a6a6a;
+}
+
+table {
+    width: 100%; /* Makes each table use the full width of its container */
+    border-collapse: collapse; /* Ensures that borders between cells are merged */
+    margin-bottom: 20px; /* Adds space between tables */
+}
+th, td {
+    border: 1px solid #ddd; /* Adds a light grey border around each cell */
+    padding: 8px; /* Adds space inside each cell */
+    text-align: left; /* Aligns text to the left */
+}
+th {
+    background-color: #f2f2f2; /* Light grey background for header cells */
+    color: #333; /* Dark grey text color for better readability */
+}
+h2 {
+    margin-top: 0; /* Removes the top margin from all h2 elements for tighter spacing */
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra stripes for rows */
 }
 
 header {
@@ -32,6 +54,10 @@ nav ul {
 
 nav ul li {
     margin-left: 1.25rem;
+}
+
+.button-container{
+    min-width: 100px;
 }
 
 button {
@@ -103,7 +129,7 @@ li {
     height: 100vh; /* Makes side A take full height of the viewport */
     padding: 10px;
     background-color: #e7e5e5;
-    min-width: 7.5rem;
+    min-width: 15rem;
 
 }
 #btnHarita, #btnGorevPaneli, #btnKontrolPaneli, #btnDurumPaneli, #btnServislerAksiyonlar{
@@ -111,24 +137,53 @@ li {
     box-sizing: border-box;
 }
 
-.controller {
-    display: grid;
-    grid-template-columns: repeat(3, 6.25rem);
-    grid-template-rows: repeat(3, 6.25rem);
-    gap: 1rem; /* adjust the gap size as needed */
-    justify-content: center;
-    align-items: center;
+#middle-container{
+    height: 50%;
 }
 
-.controller button {
-    justify-self: center;
-    align-self: center;
+#control-panel {
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Center horizontally inside the panel */
+    align-items: center; /* Center vertically inside the panel */
+    height: 100%; /* Takes full height of its parent */
+    font-size: 1.5rem;
 }
-.controller button {
-    width: 60px;
-    height: 60px;
-    margin: 5px;
+
+.controller {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px; /* Space between buttons */
+    align-items: center;
+    align-content: center;
+    justify-content: center;
 }
+.controller button{
+    width: 100px;
+}
+.emergency-stop {
+    background-color: red;
+    color: white;
+}
+
+
+.arrow-5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px; /* Increased width */
+    height: 100px; /* Increased height */
+    cursor: pointer;
+    user-select: none;
+    color: black;
+    font-size: 3rem;
+}
+
+.arrow-5:hover {
+    color: blue;
+
+}
+
 #speedIndicator, #directionIndicator {
     font-size: 20px;
     margin: 10px;
