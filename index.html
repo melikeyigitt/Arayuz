@@ -67,22 +67,34 @@
 
         <div></div>
 
-        <div>
+        <div id="speedandangle">
+          <div>
+            <div id="speedIndicator">Anlik Hiz: 0</div> <!-- HIZ -->
+            <div id="directionIndicator">Anlik Yon: Stopped</div> <!-- YON -->
 
-          <div id="speedIndicator">Speed: 0</div> <!-- HIZ -->
-          <div id="directionIndicator">Direction: Stopped</div> <!-- YON -->
 
 
-          <div id="controlSliders">
-            <label for="speedSlider">Speed:</label>
-            <input type="range" id="speedSlider" min="-1" max="1" step="0.1" value="0">
-            <span id="speedValue">0</span>
-            <br>
-            <label for="angleSlider">Angular:</label>
-            <input type="range" id="angleSlider" min="-1" max="1" step="0.1" value="0">
-            <span id="angleValue">0</span>
+            <div id="controlSliders">
+              <label for="speedSlider">Speed:</label>
+              <input type="range" id="speedSlider" min="-1" max="1" step="0.1" value="0">
+              <span id="speedValue">0</span>
+              <br>
+              <label for="angleSlider">Angular:</label>
+              <input type="range" id="angleSlider" min="-1" max="1" step="0.1" value="0">
+              <span id="angleValue">0</span>
+            </div>
+          </div>
+          <div>
+            <div>Robot Konum Bilgisi</div>
+            <div>X:</div>
+            <div>Y:</div>
+            <div>Z:</div>
           </div>
 
+
+        </div>
+
+        <div>
 
           <div id="gaugesContainer" style="display: flex; justify-content: space-around; align-items: center;">
 
@@ -123,7 +135,30 @@
           <label for="robot_yon">Robot Yönü:</label>
           <input type="number" id="robot_yon" placeholder="6"><br>
 
-          <button class="button" onclick="startBosTurService()">BosTur Servisini Başlat</button>
+          <!-- MERIC KOD -->
+          <!-- MERIC KOD -->
+          <!-- MERIC KOD -->
+          <!-- MERIC KOD -->
+          <!-- MERIC KOD -->
+          <!-- MERIC KOD -->
+          <!-- MERIC KOD -->
+
+          <button class="button" onclick="startBosTurService()">Yuklu Tur Algoritmasini Başlat</button>
+          <button class="button" onclick="startDoluTurService()">Dolu Tur Algoritmasini Başlat</button>
+        </div>
+
+        <br>
+        <br>
+        <div></div>
+        <div></div>
+
+        <div id="harita">
+          <label>Yolu Girin (Virgülle Ayırarak):</label>
+          <input type="text" id="pathInput" value="S1,A,B,C,S2"><br>
+
+          <button onclick="calculateShortestPath()">En Kısa Yolu Hesapla</button><br>
+          <br>
+          <canvas id="mazeCanvas" width="800" height="500"></canvas>
         </div>
       </div>
       <!-- DURUM PANELI -->
@@ -135,10 +170,13 @@
           <tr>
             <th>Kart Akimi</th>
             <th>Kart Gerilimi</th>
-            <th>Arac Sicakligi</th>
+            <th>Arac Ici Sicakligi</th>
+            <th>Ana Kol Akimi</th>
+            <th>Ana Kol Gerilimi</th>
             <th>Mavi Led</th>
             <th>Kirmizi Led</th>
             <th>Yesil Led</th>
+            <th>Siren State</th>
           </tr>
           </thead>
           <tbody id="ana-kontrol-unitesi-icerik">
@@ -149,19 +187,11 @@
             <td>On</td>
             <td>Off</td>
             <td>On</td>
-          </tr>
-          <tr>
-            <td>1.8 A</td>
-            <td>12.5 V</td>
-            <td>27 °C</td>
-            <td>Off</td>
             <td>On</td>
             <td>Off</td>
+            <td></td>
           </tr>
           </tbody>
-        </table>
-
-        </tbody>
         </table>
 
         <table id="ust-platform-kontrol-unitesi">
@@ -170,20 +200,64 @@
           <tr>
             <th>Kart Akimi</th>
             <th>Kart Gerilimi</th>
-            <th>Arac Sicakligi</th>
-            <th>Mavi Led</th>
-            <th>Kirmizi Led</th>
-            <th>Yesil Led</th>
+            <th>Platform Yukseklik</th>
+            <th>Motor Akim</th>
+            <th>Motor Gerilim</th>
+            <th>Yuk</th>
           </tr>
           </thead>
           <tbody id="ust-platform-kontrol-unitesi-icerik">
           <tr>
             <td>1.3 A</td>
             <td>12.2 V</td>
-            <td>26 °C</td>
-            <td>Off</td>
-            <td>On</td>
-            <td>Off</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          </tbody>
+        </table>
+
+        <table id="motor-kontrol-karti">
+          <h2>Ust Platform Kontrol Unitesi</h2>
+          <thead>
+          <tr>
+            <th>Kart Gerilimi</th>
+            <th>Kart Akimi</th>
+            <th>Motor 1 Akim</th>
+            <th>Motor 1 Gerilim</th>
+            <th>Motor 2 Akim</th>
+            <th>Motor 2 Gerilim</th>
+          </tr>
+          </thead>
+          <tbody id="motor-kontrol-karti-icerik">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          </tbody>
+        </table>
+
+        <table id="bilgisayar">
+          <h2>Ust Platform Kontrol Unitesi</h2>
+          <thead>
+          <tr>
+            <th>Bilgisayar Akimi</th>
+            <th>Biligisayar Gerilimi</th>
+            <th>Sicaklik</th>
+          </tr>
+          </thead>
+          <tbody id="bilgisayar-icerik">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
 
           </tbody>
@@ -194,26 +268,26 @@
       <!-- SERVISLER VE AKSIYONLAR -->
       <div id="service-action-panel" style="display: none;">
         <!-- Korna butonu -->
-        <div class="button-container">
+        <div class="button-container-one">
           <button class="button" onclick="honkHorn()">Korna</button>
         </div>
         <!-- Servis çağrısı yapacak buton -->
-        <div class="button-container">
+        <div class="button-container-two">
           <!-- Servis çağrısı için gerekli girdiler -->
           <label for="direction">Yön:</label>
           <select id="direction">
             <option value="left">Sol</option>
             <option value="right">Sağ</option>
-          </select><br>
+          </select>
           <label for="angular-velocity">Açısal Hız:</label>
-          <input type="number" id="angular-velocity" step="0.01" value="0.2"><br>
+          <input type="number" id="angular-velocity" step="0.01" value="0.2">
           <label for="after-turn">Dönüş Sonrası:</label>
           <input type="checkbox" id="after-turn" checked><br>
           <button class="button" onclick="call_turn_angle_w_camera()">Servis Çağrısı Yap</button>
         </div>
 
         <!-- Servis çağrısı yapacak butonlar -->
-        <div class="button-container">
+        <div class="button-container-three">
           <button class="button" onclick="sendLinearMotorService(true)">Kaldır</button>
           <button class="button" onclick="sendLinearMotorService(false)">İndir</button>
           <label id="message_label" style="font-weight: bold;"></label>
@@ -223,40 +297,45 @@
       <div id="map-panel" style="display: none;">
         <h2>Harita</h2>
         <label >TEST</label>
-        <div>
-          <!-- Yeni çember oluşturmak için input alanı ve buton -->
-          <label for="x-coordinate">X Koordinatı:</label>
-          <input type="number" id="x-coordinate" step="1">
-          <label for="y-coordinate">Y Koordinatı:</label>
-          <input type="number" id="y-coordinate" step="1">
-          <label for="radius">Yarıçap:</label>
-          <input type="number" id="radius" step="1">
-          <button onclick="addNewCircle()">Yeni Çember Ekle</button> </div>
+        <div id="harita-container">
+          <div id="harita-one">
+            <!-- Yeni çember oluşturmak için input alanı ve buton -->
+            <label for="x-coordinate">X Koordinatı:</label>
+            <input type="number" id="x-coordinate" step="1">
+            <label for="y-coordinate">Y Koordinatı:</label>
+            <input type="number" id="y-coordinate" step="1">
+            <label for="radius">Yarıçap:</label>
+            <input type="number" id="radius" step="1">
+            <br>
+            <button onclick="addNewCircle()">Yeni Çember Ekle</button> </div>
 
-        <div>
-          <label for="x-coordinate_for_text">X Koordinatı:</label>
-          <input type="number" id="x-coordinate_for_text" name="x-coordinate_for_text" step="1">
-          <label for="y-coordinate_for_text">Y Koordinatı:</label>
-          <input type="number" id="y-coordinate_for_text" name="y-coordinate_for_text" step="1">
-          <label for="text_for_text">Eklemek istediğiniz metin:</label>
-          <input type="text" id="text_for_text" name="text_for_text" step="1">
-          <button  onclick="addTextToMap()">Metni Haritaya Ekle</button></div>
+          <div id="harita-two">
+            <label for="x-coordinate_for_text">X Koordinatı:</label>
+            <input type="number" id="x-coordinate_for_text" name="x-coordinate_for_text" step="1">
+            <label for="y-coordinate_for_text">Y Koordinatı:</label>
+            <input type="number" id="y-coordinate_for_text" name="y-coordinate_for_text" step="1">
+            <label for="text_for_text">Eklemek istediğiniz metin:</label>
+            <input type="text" id="text_for_text" name="text_for_text" step="1">
+            <br>
+            <button  onclick="addTextToMap()">Metni Haritaya Ekle</button></div>
 
-        <div>
-          <!-- Dikdörtgen Eklemek İçin Input Alanları -->
-          <label for="x-coordinate_rect">X Koordinatı:</label>
-          <input type="number" id="x-coordinate_rect" name="x-coordinate_rect" step="1">
+          <div id="harita-three">
+            <!-- Dikdörtgen Eklemek İçin Input Alanları -->
+            <label for="x-coordinate_rect">X Koordinatı:</label>
+            <input type="number" id="x-coordinate_rect" name="x-coordinate_rect" step="1">
 
-          <label for="y-coordinate_rect">Y Koordinatı:</label>
-          <input type="number" id="y-coordinate_rect" name="y-coordinate_rect" step="1">
+            <label for="y-coordinate_rect">Y Koordinatı:</label>
+            <input type="number" id="y-coordinate_rect" name="y-coordinate_rect" step="1">
 
-          <label for="rect-width">Genişlik:</label>
-          <input type="number" id="rect-width" name="rect-width" step="1">
+            <label for="rect-width">Genişlik:</label>
+            <input type="number" id="rect-width" name="rect-width" step="1">
 
-          <label for="rect-height">Yükseklik:</label>
-          <input type="number" id="rect-height" name="rect-height" step="1">
+            <label for="rect-height">Yükseklik:</label>
+            <input type="number" id="rect-height" name="rect-height" step="1">
+            <br>
 
-          <button onclick="addRectangleToMap()">Dikdörtgeni Haritaya Ekle</button>
+            <button onclick="addRectangleToMap()">Dikdörtgeni Haritaya Ekle</button>
+          </div>
         </div>
 
         <div id="map-container">
@@ -541,6 +620,187 @@
         // Servis çağrısı sonucunu işleyebilirsiniz
       });
     }
+
+    var maze = [
+      [1,1, 1,1,1,1,1, 1, 1,1,1,1,1, 1, 1,1,1,1,1, 1, 1,1,1,1,1, 1, 1,1,1,1,1, 1, 1,1,1,1,1, 1,1],
+      [1,0, 0,0,0,0,0, 0, 0,0,0,0,0, 0, 0,0,0,0,0, 0, 0,0,0,0,0, 0, 0,0,0,0,0, 0, 0,0,0,0,0, 0,1], //1
+      [1,0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0,1],
+      [1,0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0,1],
+      [1,0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0,1],
+      [1,0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0,1],
+      [1,0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0,1],
+      [1,0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0,1],
+      [1,0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0,1],
+      [1,0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0,1],
+      [1,0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0,1],
+      [1,0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0, 1,1,1,1,1, 0,1],
+      [1,0, 0,0,0,0,0, 0, 0,0,0,0,0, 0, 0,0,0,0,0, 0, 0,0,0,0,0, 0, 0,0,0,0,0, 0, 0,0,0,0,0, 0,1], //12
+      [1,1, 1,1,1,1,1, 1, 1,1,1,1,1, 1, 1,1,1,1,1, 1, 1,1,1,1,1, 1, 1,1,1,1,1, 1, 1,1,1,1,1, 1,1]
+      //1           //7            //13          //19         //25          //31         //37
+    ];
+    var shortestPath = [];
+
+    var canvas = document.getElementById('mazeCanvas');
+    var ctx = canvas.getContext('2d');
+    var blockSize = 20;
+
+    function drawMaze() {
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height); // Clear canvas
+      for (var i = 0; i < maze.length; i++) {
+        for (var j = 0; j < maze[0].length; j++) {
+          if (maze[i][j] === 1) {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(j * blockSize, i * blockSize, blockSize, blockSize);
+          }
+        }
+      }
+    }
+
+    function drawPath(path) {
+      ctx.strokeStyle = 'blue';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(path[0][1] * blockSize + blockSize / 2, path[0][0] * blockSize + blockSize / 2);
+      for (var i = 1; i < path.length; i++) {
+        ctx.lineTo(path[i][1] * blockSize + blockSize / 2, path[i][0] * blockSize + blockSize / 2);
+      }
+      ctx.stroke();
+    }
+
+    function drawReferencePoints() {
+      ctx.fillStyle = 'red';
+      ctx.font = 'bold 12px Arial';
+      for (var key in referenceTable) {
+        var coord = referenceTable[key];
+        ctx.fillText(key, coord[1] * blockSize, coord[0] * blockSize);
+      }
+    }
+
+    function calculateShortestPath() {
+      var pathInput = document.getElementById('pathInput').value;
+      var pathArray = pathInput.split(',');
+
+      var fullShortestPath = [];
+
+      // Ardışık her iki noktayı birleştirip en kısa yolu hesapla
+      for (var i = 0; i < pathArray.length - 1; i++) {
+        var start = referenceTable[pathArray[i]];
+        var end = referenceTable[pathArray[i + 1]];
+
+        var shortestPathPart = calculatePartialShortestPath(start, end);
+        fullShortestPath = fullShortestPath.concat(shortestPathPart);
+      }
+
+      drawMaze();
+      drawReferencePoints(); // Referans noktalarını çiz
+      drawPath(fullShortestPath);
+    }
+
+    function calculatePartialShortestPath(start, end) {
+      var distances = {};
+      var visited = new Set();
+      var unvisited = new Set();
+      var previous = {};
+      var current = start.toString();
+      distances[current] = 0;
+
+      for (var i = 0; i < maze.length; i++) {
+        for (var j = 0; j < maze[0].length; j++) {
+          var vertex = [i, j].toString();
+          if (vertex !== current) {
+            distances[vertex] = Infinity;
+          }
+          unvisited.add(vertex);
+        }
+      }
+
+      while (unvisited.size > 0) {
+        visited.add(current);
+        unvisited.delete(current);
+
+        var neighbors = getNeighbors(current);
+        for (var neighbor of neighbors) {
+          var distance = distances[current] + 1; // Assuming each edge has weight 1
+          if (distance < distances[neighbor]) {
+            distances[neighbor] = distance;
+            previous[neighbor] = current;
+          }
+        }
+
+        current = getNextNode(unvisited, distances);
+        if (!current || current.toString() === end.toString()) break;
+      }
+
+      return reconstructPath(previous, end.toString()).map(coord => coord.split(',').map(Number));
+    }
+
+    function getNeighbors(coord) {
+      var [x, y] = coord.split(',').map(Number);
+      var neighbors = [];
+      if (isValid(x - 1, y)) neighbors.push([(x - 1), y].toString());
+      if (isValid(x + 1, y)) neighbors.push([(x + 1), y].toString());
+      if (isValid(x, y - 1)) neighbors.push([x, (y - 1)].toString());
+      if (isValid(x, y + 1)) neighbors.push([x, (y + 1)].toString());
+      return neighbors.filter(n => !isDiagonal(coord, n));
+    }
+
+    function isDiagonal(coord1, coord2) {
+      var [x1, y1] = coord1.split(',').map(Number);
+      var [x2, y2] = coord2.split(',').map(Number);
+      return Math.abs(x1 - x2) === 1 && Math.abs(y1 - y2) === 1;
+    }
+
+    // Başlangıç ve bitiş referanslarına karşılık gelen koordinatlar
+    var referenceTable = {
+      'k3': [1, 1],
+      'k2': [1, 37],
+      'k1': [12, 37],
+      'k4': [12, 1],
+
+      'A': [6, 7],
+      'B': [6, 13],
+      'C': [6, 25],
+      'D': [6, 31],
+      'S1': [1, 19],
+      'S2': [12, 19],
+    };
+
+
+
+    function isValid(x, y) {
+      return x >= 0 && x < maze.length && y >= 0 && y < maze[0].length && maze[x][y] === 0;
+    }
+
+    function getNextNode(unvisited, distances, end) {
+      var minDistance = Infinity;
+      var nextNode = null;
+      unvisited.forEach(node => {
+        if (distances[node] < minDistance) {
+          minDistance = distances[node];
+          nextNode = node;
+        }
+      });
+      // Eğer bitiş noktasına ulaşıldıysa veya unvisited boşsa döngüden çık
+      if (nextNode === end || unvisited.size === 0) {
+        return null;
+      }
+      return nextNode;
+    }
+
+    function reconstructPath(previous, end) {
+      var path = [];
+      var current = end;
+      while (previous[current] !== undefined) {
+        path.push(current);
+        current = previous[current];
+      }
+      return path.reverse();
+    }
+
+    // Başlangıçta labirenti ve en kısa yolu çiz
+    drawMaze();
+    drawReferencePoints(); // Referans noktalarını çiz
 
     // DURUM PANELI
     document.addEventListener('DOMContentLoaded', function() {

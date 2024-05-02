@@ -55,10 +55,28 @@ nav ul {
 nav ul li {
     margin-left: 1.25rem;
 }
-
-.button-container{
-    min-width: 100px;
+.button-container-two{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin: 30px;
+    gap: 20px;
 }
+#map-panel h2{
+    color: black;
+}
+
+#harita-container{
+    display: grid;
+}
+#harita-one, #harita-two, #harita-three{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
 
 button {
     background-color: #414141; /* Button colour */
@@ -136,6 +154,12 @@ li {
     width:5rem; /* Example minimum width, adjust as needed */
     box-sizing: border-box;
 }
+#control-panel{
+    margin: 10px;
+}
+#durum-panel, #service-action-panel, #map-panel{
+    margin: 30px;
+}
 
 #middle-container{
     height: 50%;
@@ -145,8 +169,18 @@ li {
     display: flex; /* Enables flexbox */
     justify-content: center; /* Center horizontally inside the panel */
     align-items: center; /* Center vertically inside the panel */
-    height: 100%; /* Takes full height of its parent */
+    height: 50%; /* Takes full height of its parent */
     font-size: 1.5rem;
+}
+
+#speedandangle{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+#harita{
+    align-content: center;
 }
 
 .controller {
@@ -191,7 +225,6 @@ li {
 
 #mission-panel {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
     padding: 20px;
     border-radius: 0.2rem;
 }
@@ -200,6 +233,12 @@ li {
     color: #333;
     font-size: 18px;
     margin-bottom: 10px;
+}
+#durum-panel h2{
+    color: black;
+}
+#durum-panel th{
+    color: #414040;
 }
 
 /* Styles for the QR Code Section */
