@@ -65,6 +65,9 @@ nav ul li {
 #map-panel h2{
     color: black;
 }
+#map-image{
+    border: 5px solid black;
+}
 
 #harita-container{
     display: grid;
@@ -169,14 +172,13 @@ li {
     display: flex; /* Enables flexbox */
     justify-content: center; /* Center horizontally inside the panel */
     align-items: center; /* Center vertically inside the panel */
-    height: 50%; /* Takes full height of its parent */
+    height: 35%; /* Takes full height of its parent */
     font-size: 1.5rem;
 }
 
 #speedandangle{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
 }
 
 #harita{
